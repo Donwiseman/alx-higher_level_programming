@@ -1,10 +1,16 @@
 #!/usr/bin/python3
 import random
 number = random.randint(-10000, 10000)
-print(f"Last digit of {number} is {number % 10} and is ", end = "")
-if number % 10 > 5:
+if number < 0:
+    rem = (number % 10) - 10
+    if rem == -10:
+        rem = 0
+else:
+    rem = number % 10
+print(f"Last digit of {number} is {rem} and is ", end="")
+if rem > 5:
     print("greater than 5")
-elif number == 0:
+elif rem == 0:
     print("0")
-elif number < 6 and not 0:
+elif rem < 6 and not 0:
     print("less than 6 and not 0")
