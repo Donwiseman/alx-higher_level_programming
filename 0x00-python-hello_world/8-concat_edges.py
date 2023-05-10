@@ -2,4 +2,4 @@
 str = "Python is an interpreted, interactive, object-oriented programming\
  language that combines remarkable power with very clear syntax"
 str = f"{str[39:66]}{str[6:7]}{str[-22:-18]}{str[6:7]}{str[:6]}"
-print(f"{str}")
+print(str)
