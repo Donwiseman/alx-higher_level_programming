@@ -11,8 +11,3 @@ def pow(a, b):
         for x in range(b):
             num *= a
     return num
-
-
-print(pow(4, 5))
-print(pow(-4, 5))
-print(pow(2, -2))
