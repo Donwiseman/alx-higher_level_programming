@@ -5,7 +5,10 @@ if __name__ == "__main__":
     if argc == 1:
         print("0 arguments.")
     else:
-        print(f"{argc - 1} argument:")
+        if argc == 2:
+            print(f"{argc - 1} argument:")
+        else:
+            print(f"{argc - 1} arguments:")
         for index, value in enumerate(sys.argv):
             if index == 0:
                 continue
