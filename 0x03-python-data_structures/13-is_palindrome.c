@@ -15,7 +15,7 @@ int is_palindrome(listint_t **head)
 	if ((head == NULL) || (*head == NULL))
 		return (1);
 	if (current->next == NULL)
-		return (0);
+		return (1);
 	arr = (int *) malloc(1 * sizeof(int));
 	if (arr == NULL)
 		exit(EXIT_FAILURE);
