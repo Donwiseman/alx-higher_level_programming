@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""a module conatining definition of the square class with instantiation"""
+
+
 class Square(object):
     """A class that performs various actions related to a square"""
     def __init__(self, size):
