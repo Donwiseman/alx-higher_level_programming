@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""defines a square by: (based on 3-square.py) and adds property for attr"""
+"""defines a square by: (based on 4-square.py) and adds print method"""
 
 
 class Square(object):
@@ -47,3 +47,17 @@ class Square(object):
         if (value < 0):
             raise ValueError("size must be >= 0")
         self.__size = value
+
+    def my_print(self):
+        """prints the size of square to the stdout using `#`"""
+        index = 0
+
+        while (self.__size > 0):
+            for x in range(self.__size):
+                print("#", end='')
+            print()
+            index += 1
+            if index == self.__size:
+                break
+        else:
+            print()
