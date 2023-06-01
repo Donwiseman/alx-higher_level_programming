@@ -49,6 +49,9 @@ class Square(object):
         """prints the size of square to the stdout using `#`"""
         index = 0
 
+        if self.__position[1] > 0:
+            for x in range(self.__position[1]):
+                print()
         while (self.__size > 0):
             if self.__position[0] != 0:
                 for x in range(self.__position[0]):
