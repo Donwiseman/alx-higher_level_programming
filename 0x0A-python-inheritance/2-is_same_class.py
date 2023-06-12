@@ -16,4 +16,4 @@ def is_same_class(obj, a_class):
 
     """
     return (isinstance(obj, a_class) and not isinstance(
-        super(type(obj), obj), a_class))
+            super(type(obj), obj), a_class))
