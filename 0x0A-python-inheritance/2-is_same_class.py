@@ -15,6 +15,4 @@ def is_same_class(obj, a_class):
         bool: True if obj is an instance of a_class, false otherwise
 
     """
-    inst_check = isinstance(obj, a_class)
-    sub_check = isinstance(super(type(obj), obj), a_class)
-    return (inst_check and not sub_check)
+    return (type(obj) == a_class)
