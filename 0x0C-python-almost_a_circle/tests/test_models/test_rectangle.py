@@ -69,3 +69,22 @@ class TestRectangle(unittest.TestCase):
     def test_wrong_instantiation10(self):
         with self.assertRaises(ValueError, msg='y must be >= 0'):
             a = Rectangle(5, 4, 1, -2)
+
+    def test_area(self):
+        a = Rectangle(5, 4, 1, 1)
+        self.assertEqual(a.area(), 20)
+
+    def test_area2(self):
+        a = Rectangle(5, 4, 1, 1)
+        a.width = 6
+        self.assertEqual(a.area(), 24)
+
+    def test_str(self):
+        a = Rectangle(5, 4, 1, 1, 12)
+        self.assertEqual(str(a), "[Rectangle] (12) 1/1 - 5/4")
+
+    def test_str2(self):
+        a = Rectangle(5, 4, 1, 1, 12)
+        a.height = 13
+        a.x = 3
+        self.assertEqual(str(a), "[Rectangle] (12) 3/1 - 5/13")

@@ -7,6 +7,11 @@ from models.base import Base
 class Rectangle(Base):
     """Defines the rectangle class which inherits from the Base class
 
+    This class has the __str__ method which returns the string representation
+    of the class instance, area method which returns the area of the rectangle
+    instance, the display method which displays the rectangle using `#` symbol
+    and attributes x and y for horizontal and vertical spacing respectively
+
     Attributes:
         width (int): propety which defines the width of the rectangle
         height (int): property which defines the height of the rectangle
@@ -106,3 +111,25 @@ class Rectangle(Base):
         if y < 0:
             raise ValueError("y must be >= 0")
         self.__y = y
+
+    def area(self):
+        """Returns the area of this rectangle instance"""
+        return self.__width * self.__height
+
+    def display(self):
+        """Prints a rectangle representation usin `#` symbol to the stdout
+        and vlaue of x and y attributes to determine the horizontal and
+        vertical spacing when printing respectively
+        """
+        if self.__y > 0:
+            for y in range(self.__y):
+                print()
+        for height in range(self.__height):
+            if self.__x > 0:
+                print((" " * self.__x), end='')
+            print(("#" * self.__width))
+
+    def __str__(self):
+        """Prints the string representation of the class instance"""
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(
+                self.id, self.__x, self.__y, self.__width, self.__height)
