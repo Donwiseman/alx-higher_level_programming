@@ -88,3 +88,93 @@ class TestRectangle(unittest.TestCase):
         a.height = 13
         a.x = 3
         self.assertEqual(str(a), "[Rectangle] (12) 3/1 - 5/13")
+
+    def test_update_args(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        a.update(89)
+        self.assertEqual(str(a), "[Rectangle] (89) 10/10 - 10/10")
+
+    def test_update_args1(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        a.update(89, 2)
+        self.assertEqual(str(a), "[Rectangle] (89) 10/10 - 2/10")
+
+    def test_update_args2(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        a.update(89, 2, 3)
+        self.assertEqual(str(a), "[Rectangle] (89) 10/10 - 2/3")
+
+    def test_update_args3(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        a.update(89, 2, 3, 4)
+        self.assertEqual(str(a), "[Rectangle] (89) 4/10 - 2/3")
+
+    def test_update_args4(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        a.update(89, 2, 3, 4, 5)
+        self.assertEqual(str(a), "[Rectangle] (89) 4/5 - 2/3")
+
+    def test_update_kwargs(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        a.update(id=89)
+        self.assertEqual(str(a), "[Rectangle] (89) 10/10 - 10/10")
+
+    def test_update_kwargs1(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        a.update(id=89, width=2)
+        self.assertEqual(str(a), "[Rectangle] (89) 10/10 - 2/10")
+
+    def test_update_kwargs2(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        a.update(id=89, width=2, height=3)
+        self.assertEqual(str(a), "[Rectangle] (89) 10/10 - 2/3")
+
+    def test_update_kwargs3(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        a.update(id=89, x=4, height=3, width=2)
+        self.assertEqual(str(a), "[Rectangle] (89) 4/10 - 2/3")
+
+    def test_update_args4(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        a.update(height=3, width=2, id=89, y=5, x=4)
+        self.assertEqual(str(a), "[Rectangle] (89) 4/5 - 2/3")
+
+    def test_update_wrong_kwargs(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        a.update(height=3, width=2, id=89, y=5, x=4, men="hard", perimeter=40)
+        self.assertEqual(str(a), "[Rectangle] (89) 4/5 - 2/3")
+
+    def test_update_wrong_kwargs1(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        with self.assertRaises(TypeError, msg='width must be an integer'):
+            a.update(height=3, width='2', id=89, y=5, x=4)
+
+    def test_update_wrong_kwargs2(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        with self.assertRaises(TypeError, msg='height must be an integer'):
+            a.update(height=[3, 5], width=2, id=89, y=5, x=4)
+
+    def test_update_wrong_kwargs3(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        with self.assertRaises(ValueError, msg='x must be >= 0'):
+            a.update(height=3, width=2, id=89, y=5, x=-4)
+
+    def test_update_wrong_kwargs4(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        with self.assertRaises(ValueError, msg='y must be >= 0'):
+            a.update(y=-5, x=4)
+
+    def test_update_wrong_args(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        with self.assertRaises(ValueError, msg='y must be >= 0'):
+            a.update(89, 2, 3, 4, -5)
+
+    def test_update_wrong_args1(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        with self.assertRaises(ValueError, msg='width must be > 0'):
+            a.update(89, 0)
+
+    def test_update_wrong_args2(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        with self.assertRaises(TypeError, msg='width must be an integer'):
+            a.update(89, 10.235)

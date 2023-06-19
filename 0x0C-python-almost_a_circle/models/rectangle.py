@@ -133,3 +133,37 @@ class Rectangle(Base):
         """Prints the string representation of the class instance"""
         return "[Rectangle] ({}) {}/{} - {}/{}".format(
                 self.id, self.__x, self.__y, self.__width, self.__height)
+
+    def update(self, *args, **kwargs):
+        """Updates the attributes of the rectangle instance based on arguments
+
+        This updates the various attributes of the rectange class using a
+        combination of non keyword and keyword arguments
+        Args:
+            args: no-keyword positional argument
+            kwargs: keyword positional argument.
+
+        """
+        if args:
+            for index, value in enumerate(args):
+                if index == 0:
+                    self.id = value
+                elif index == 1:
+                    self.width = value
+                elif index == 2:
+                    self.height = value
+                elif index == 3:
+                    self.x = value
+                elif index == 4:
+                    self.y = value
+        if kwargs:
+            if 'id' in kwargs:
+                self.id = kwargs['id']
+            if 'width' in kwargs:
+                self.width = kwargs['width']
+            if 'height' in kwargs:
+                self.height = kwargs['height']
+            if 'x' in kwargs:
+                self.x = kwargs['x']
+            if 'y' in kwargs:
+                self.y = kwargs['y']
