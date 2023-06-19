@@ -10,7 +10,9 @@ class Rectangle(Base):
     This class has the __str__ method which returns the string representation
     of the class instance, area method which returns the area of the rectangle
     instance, the display method which displays the rectangle using `#` symbol
-    and attributes x and y for horizontal and vertical spacing respectively
+    and attributes x and y for horizontal and vertical spacing respectively,
+    the update method which updates the attributes of the class either using
+    *args or **kwargs.
 
     Attributes:
         width (int): propety which defines the width of the rectangle
@@ -156,7 +158,7 @@ class Rectangle(Base):
                     self.x = value
                 elif index == 4:
                     self.y = value
-        if kwargs:
+        elif kwargs:
             if 'id' in kwargs:
                 self.id = kwargs['id']
             if 'width' in kwargs:

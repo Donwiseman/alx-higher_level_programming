@@ -139,10 +139,15 @@ class TestRectangle(unittest.TestCase):
         a.update(height=3, width=2, id=89, y=5, x=4)
         self.assertEqual(str(a), "[Rectangle] (89) 4/5 - 2/3")
 
-    def test_update_wrong_kwargs(self):
+    def test_update_toomany_kwargs(self):
         a = Rectangle(10, 10, 10, 10, 10)
         a.update(height=3, width=2, id=89, y=5, x=4, men="hard", perimeter=40)
         self.assertEqual(str(a), "[Rectangle] (89) 4/5 - 2/3")
+
+    def test_update_args_and_kwargs(self):
+        a = Rectangle(10, 10, 10, 10, 10)
+        a.update(89, 2, 3, 4, width=8, height=9)
+        self.assertEqual(str(a), "[Rectangle] (89) 4/10 - 2/3")
 
     def test_update_wrong_kwargs1(self):
         a = Rectangle(10, 10, 10, 10, 10)
