@@ -74,3 +74,12 @@ class Square(Rectangle):
                 super().update(x=kwargs['x'])
             if 'y' in kwargs:
                 super().update(y=kwargs['y'])
+
+    def to_dictionary(self):
+        """Returns a dictionary conataining the attributes of the Square"""
+        return {
+                "id": self.id,
+                "size": self.size,
+                "x": super().x,
+                "y": super().y
+                }

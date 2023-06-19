@@ -93,15 +93,32 @@ class TestSquare(unittest.TestCase):
 
     def test_update_args_kwargs(self):
         s1 = Square(5)
-        s1.update(190, 10, 2, id =24, size=7)
+        s1.update(190, 10, 2, id=24, size=7)
         self.assertEqual(str(s1), "[Square] (190) 2/0 - 10")
 
     def test_update_args_kwargs1(self):
         s1 = Square(5)
-        s1.update(190, 10, 2, id =24, size=7, y=2)
+        s1.update(190, 10, 2, id=24, size=7, y=2)
         self.assertEqual(str(s1), "[Square] (190) 2/0 - 10")
 
     def test_update_toomany_kwargs(self):
         s1 = Square(5)
         s1.update(id=190, perimeter=50, height=10, x=2, y=2)
         self.assertEqual(str(s1), "[Square] (190) 2/2 - 5")
+
+    def test_to_dictionary(self):
+        s = Square(4, 1, 1, 19)
+        d = s.to_dictionary()
+        self.assertEqual(d, {'id': 19, 'size': 4, 'x': 1, 'y': 1})
+
+    def test_to_dictionary2(self):
+        r = Square(4, 1, 1, 19)
+        r.update(size=8)
+        d = r.to_dictionary()
+        self.assertEqual(d, {'id': 19, 'size': 8, 'x': 1, 'y': 1})
+
+    def test_to_dictionary3(self):
+        r = Square(4, 1, 1)
+        r2 = Square(2, 3, 3)
+        r2.update(**r.to_dictionary())
+        self.assertEqual(r.to_dictionary(), r2.to_dictionary())

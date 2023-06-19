@@ -183,3 +183,22 @@ class TestRectangle(unittest.TestCase):
         a = Rectangle(10, 10, 10, 10, 10)
         with self.assertRaises(TypeError, msg='width must be an integer'):
             a.update(89, 10.235)
+
+    def test_to_dictionary(self):
+        r = Rectangle(4, 3, 1, 1, 19)
+        d = r.to_dictionary()
+        self.assertEqual(d, {'id': 19, 'width': 4, 'height': 3, 'x': 1,
+                             'y': 1})
+
+    def test_to_dictionary2(self):
+        r = Rectangle(4, 3, 1, 1, 19)
+        r.update(height=4)
+        d = r.to_dictionary()
+        self.assertEqual(d, {'id': 19, 'width': 4, 'height': 4, 'x': 1,
+                             'y': 1})
+
+    def test_to_dictionary3(self):
+        r = Rectangle(4, 3, 1, 1)
+        r2 = Rectangle(2, 4, 3, 3)
+        r2.update(**r.to_dictionary())
+        self.assertEqual(r.to_dictionary(), r2.to_dictionary())

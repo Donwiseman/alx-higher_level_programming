@@ -12,7 +12,8 @@ class Rectangle(Base):
     instance, the display method which displays the rectangle using `#` symbol
     and attributes x and y for horizontal and vertical spacing respectively,
     the update method which updates the attributes of the class either using
-    *args or **kwargs.
+    *args or **kwargs, to_dictionary method which returns a dictionary
+    representation of the class attributes for that instance.
 
     Attributes:
         width (int): propety which defines the width of the rectangle
@@ -139,8 +140,9 @@ class Rectangle(Base):
     def update(self, *args, **kwargs):
         """Updates the attributes of the rectangle instance based on arguments
 
-        This updates the various attributes of the rectange class using a
-        combination of non keyword and keyword arguments
+        This updates the various attributes of the rectange class using either
+        non keyword or keyword arguments
+
         Args:
             args: no-keyword positional argument
             kwargs: keyword positional argument.
@@ -169,3 +171,13 @@ class Rectangle(Base):
                 self.x = kwargs['x']
             if 'y' in kwargs:
                 self.y = kwargs['y']
+
+    def to_dictionary(self):
+        """Returns a dictionary of the class attributes"""
+        return {
+                "id": self.id,
+                "width": self.__width,
+                "height": self.__height,
+                "x": self.__x,
+                "y": self.__y
+                }
