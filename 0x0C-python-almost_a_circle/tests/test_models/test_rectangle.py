@@ -224,3 +224,13 @@ class TestRectangle(unittest.TestCase):
         o1, o2 = list_rectangles_output
         self.assertEqual(str(r1), str(o1))
         self.assertEqual(str(r2), str(o2))
+
+    def test_save_load_file_csv(self):
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_rectangles_input = [r1, r2]
+        Rectangle.save_to_file_csv(list_rectangles_input)
+        list_rectangles_output = Rectangle.load_from_file_csv()
+        o1, o2 = list_rectangles_output
+        self.assertEqual(str(r1), str(o1))
+        self.assertEqual(str(r2), str(o2))

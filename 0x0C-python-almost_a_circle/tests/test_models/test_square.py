@@ -143,3 +143,13 @@ class TestSquare(unittest.TestCase):
         o1, o2 = list_squares_output
         self.assertEqual(str(r1), str(o1))
         self.assertEqual(str(r2), str(o2))
+
+    def test_save_load_file_csv(self):
+        r1 = Square(10, 7, 2, 8)
+        r2 = Square(2)
+        list_squares_input = [r1, r2]
+        Square.save_to_file_csv(list_squares_input)
+        list_squares_output = Square.load_from_file_csv()
+        o1, o2 = list_squares_output
+        self.assertEqual(str(r1), str(o1))
+        self.assertEqual(str(r2), str(o2))
