@@ -122,3 +122,24 @@ class TestSquare(unittest.TestCase):
         r2 = Square(2, 3, 3)
         r2.update(**r.to_dictionary())
         self.assertEqual(r.to_dictionary(), r2.to_dictionary())
+
+    def test_to_json_string(self):
+        self.assertEqual(Square.to_json_string(None), '[]')
+
+    def test_to_json_string2(self):
+        self.assertEqual(Square.to_json_string([]), '[]')
+
+    def test_to_json_string3(self):
+        s = Square(10, 1, 1, 5)
+        json_str = Square.to_json_string([s.to_dictionary()])
+        self.assertEqual(json_str, '[{"id": 5, "size": 10, "x": 1, "y": 1}]')
+
+    def test_save_load_file(self):
+        r1 = Square(10, 7, 2, 8)
+        r2 = Square(2)
+        list_squares_input = [r1, r2]
+        Square.save_to_file(list_squares_input)
+        list_squares_output = Square.load_from_file()
+        o1, o2 = list_squares_output
+        self.assertEqual(str(r1), str(o1))
+        self.assertEqual(str(r2), str(o2))

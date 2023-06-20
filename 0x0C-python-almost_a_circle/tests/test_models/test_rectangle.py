@@ -202,3 +202,25 @@ class TestRectangle(unittest.TestCase):
         r2 = Rectangle(2, 4, 3, 3)
         r2.update(**r.to_dictionary())
         self.assertEqual(r.to_dictionary(), r2.to_dictionary())
+
+    def test_to_json_string(self):
+        self.assertEqual(Rectangle.to_json_string(None), '[]')
+
+    def test_to_json_string2(self):
+        self.assertEqual(Rectangle.to_json_string([]), '[]')
+
+    def test_to_json_string3(self):
+        s = Rectangle(10, 7, 2, 8, 12)
+        json_str = Rectangle.to_json_string([s.to_dictionary()])
+        string = '[{"id": 12, "width": 10, "height": 7, "x": 2, "y": 8}]'
+        self.assertEqual(json_str, string)
+
+    def test_save_load_file(self):
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_rectangles_input = [r1, r2]
+        Rectangle.save_to_file(list_rectangles_input)
+        list_rectangles_output = Rectangle.load_from_file()
+        o1, o2 = list_rectangles_output
+        self.assertEqual(str(r1), str(o1))
+        self.assertEqual(str(r2), str(o2))
