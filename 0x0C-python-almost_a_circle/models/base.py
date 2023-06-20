@@ -62,5 +62,59 @@ class Base(object):
             for inst in list_objs:
                 list_dict.append(inst.to_dictionary())
         json_str = Base.to_json_string(list_dict)
-        with open("{}.json".format(cls.__name__), "w") as save_file:
+        f = "{}.json".format(cls.__name__)
+        with open(f, "w", encoding='utf-8') as save_file:
             save_file.write(json_str)
+
+    @staticmethod
+    def from_json_string(json_string):
+        """returns a list object from the JSON string representation:
+
+        Args:
+            json_string (str): JSON string to be converted to respective object
+
+        Returns:
+            An object (likely a list) from the JSON string
+        """
+        list_dict = None
+        if json_string:
+            list_dict = json.loads(json_string)
+        else:
+            list_dict = []
+        return list_dict
+
+    @classmethod
+    def create(cls, **dictionary):
+        """returns an class instance with all attributes already set
+
+        Args:
+            dictionary (dict): dictionary conatining attributes of the instance
+
+        Returns:
+            A class instance with attributes same as that of the dictionary
+        """
+        if cls.__name__ == "Rectangle":
+            inst = cls(1, 1)
+        else:
+            inst = cls(1)
+        inst.update(**dictionary)
+        return inst
+
+    @classmethod
+    def load_from_file(cls):
+        """returns a list of instances for a given class from file
+
+        Returns:
+            returns a list of a given class instance loaded from file
+        """
+        file_name = "{}.json".format(cls.__name__)
+        list_objs = []
+        try:
+            with open(file_name, 'r', encoding='utf-8') as json_list:
+                json_string = json_list.read()
+                list_dict = Base.from_json_string(json_string)
+                for inst in list_dict:
+                    list_objs.append(cls.create(**inst))
+                return list_objs
+        except Exception:
+            return list_objs
