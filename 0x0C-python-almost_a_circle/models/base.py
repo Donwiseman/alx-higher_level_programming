@@ -5,13 +5,14 @@
 """
 
 import json
+import csv
 
 
 class Base(object):
     """ This defines the base class used in this package.
 
-    This base class has 5 mthods which help serialize and deserialize the
-    various class instance to and from JSON format.
+    This base class has 7 methods which help serialize and deserialize the
+    various class instance to and from JSON format and CSV format.
 
     Attributes:
         id (int): the id of the class intance.
@@ -115,6 +116,51 @@ class Base(object):
                 list_dict = Base.from_json_string(json_string)
                 for inst in list_dict:
                     list_objs.append(cls.create(**inst))
+                return list_objs
+        except Exception:
+            return list_objs
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Serializes a list of class objects to csv format
+
+        The method save the file to the current working directory as
+        <class name>.csv
+
+        Args:
+            list_objs (list): list of class instances
+
+        """
+        rectangle_fields = ["id", "width", "height", "x", "y"]
+        square_fields = ["id", "size", "x", "y"]
+        file_name = "{}.csv".format(cls.__name__)
+        with open(file_name, "w", encoding="utf-8", newline='') as csv_file:
+            if cls.__name__ == 'Rectangle':
+                writer = csv.DictWriter(csv_file, fieldnames=rectangle_fields)
+            else:
+                writer = csv.DictWriter(csv_file, fieldnames=square_fields)
+            writer.writeheader()
+            if list_objs:
+                for inst in list_objs:
+                    writer.writerow(inst.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """returns a list of instances for a given class from csv file
+
+        Returns:
+            returns a list of a given class instance loaded from csv file
+        """
+        file_name = "{}.csv".format(cls.__name__)
+        list_objs = []
+        try:
+            with open(file_name, 'r', encoding='utf-8', newline='') as csv_fil:
+                reader = csv.DictReader(csv_fil)
+                for inst in reader:
+                    real_dict = {}
+                    for key, value in inst.items():
+                        real_dict[key] = int(value)
+                    list_objs.append(cls.create(**real_dict))
                 return list_objs
         except Exception:
             return list_objs
