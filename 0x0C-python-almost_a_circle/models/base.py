@@ -164,3 +164,35 @@ class Base(object):
                 return list_objs
         except Exception:
             return list_objs
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Uses Turtle module to draw instances of Base class in a window
+
+        Args:
+            list_rectangles (list): List of rectangle classes to be drawn
+            list_squares (list): List of square instances to be drawn
+
+        """
+        draw = turtle.Turtle()
+        screen = draw.getscreen()
+        screen.title("Welcome to the Base draw Window")
+        draw.pen("shown"=False, "pendown"=True, "pencolor"="blue",
+                 "fillcolor"="red", "pensize"=10, "speed"=4)
+        if list_rectangles:
+            for num, rect in enumerate(list_rectangles):
+                screen.title("Drawing Rectangle {}".format(num))
+                for i in range(2):
+                    draw.forward(rect.width)
+                    draw.left(90)
+                    draw.forward(rect.height)
+                    draw.left(90)
+                draw.reset()
+        if list_squares:
+            for num, sqr in enumerate(list_squares):
+                screen.title("Drawing Square {}".format(num))
+                for i in range(4):
+                    draw.forward(sqr.size)
+                    draw.left(90)
+                draw.reset()
+        screen.bye()
