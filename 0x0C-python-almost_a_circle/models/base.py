@@ -6,6 +6,7 @@
 
 import json
 import csv
+import turtle
 
 
 class Base(object):
@@ -177,22 +178,28 @@ class Base(object):
         draw = turtle.Turtle()
         screen = draw.getscreen()
         screen.title("Welcome to the Base draw Window")
-        draw.pen("shown"=False, "pendown"=True, "pencolor"="blue",
-                 "fillcolor"="red", "pensize"=10, "speed"=4)
         if list_rectangles:
             for num, rect in enumerate(list_rectangles):
                 screen.title("Drawing Rectangle {}".format(num))
+                draw.penup()
+                draw.goto(rect.x, rect.y)
+                draw.pen(shown=False, pendown=True, pencolor="blue",
+                         fillcolor="red", pensize=4, speed=4)
                 for i in range(2):
                     draw.forward(rect.width)
-                    draw.left(90)
+                    draw.right(90)
                     draw.forward(rect.height)
-                    draw.left(90)
+                    draw.right(90)
                 draw.reset()
         if list_squares:
             for num, sqr in enumerate(list_squares):
                 screen.title("Drawing Square {}".format(num))
+                draw.penup()
+                draw.goto(sqr.x, sqr.y)
+                draw.pen(shown=False, pendown=True, pencolor="blue",
+                         fillcolor="red", pensize=4, speed=4)
                 for i in range(4):
                     draw.forward(sqr.size)
-                    draw.left(90)
+                    draw.right(90)
                 draw.reset()
         screen.bye()
