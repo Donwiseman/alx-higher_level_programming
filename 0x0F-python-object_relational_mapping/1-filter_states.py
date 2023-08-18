@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ This is a script that uses MySQLdb to lists all states from
-the database hbtn_0e_0_usa.
+the database hbtn_0e_0_usa that starts with `N`.
 """
 
 import sys
@@ -17,3 +17,5 @@ if __name__ == "__main__":
     rows = cur.fetchall()
     for row in rows:
         print(row)
+    cur.close()
+    db.close()
