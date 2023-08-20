@@ -1,4 +1,4 @@
-#!/bin/usr/python3
+#!/usr/bin/python3
 """ This python script creates a declarative base, using it to create
 the Base Class 'State' which creates the metadata necessary to map objects
 with SQLAlchemy to the database.
