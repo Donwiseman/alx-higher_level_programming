@@ -1,3 +1,3 @@
 #!/bin/bash
 #takes in a URL and displays the body of the response
-curl -s --fail -X GET "$1"
+curl -sL --fail -X GET "$1"
