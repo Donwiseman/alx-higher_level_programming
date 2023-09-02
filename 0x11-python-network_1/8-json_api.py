@@ -17,5 +17,5 @@ if __name__ == "__main__":
             print(f"[{r_j['id']}] {r_j['name']}")
         else:
             print('No result')
-    except requests.exceptions.JSONDecodeError as e:
+    except Exception as e:
         print('Not a valid JSON')
