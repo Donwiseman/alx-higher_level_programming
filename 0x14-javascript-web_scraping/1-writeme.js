@@ -3,7 +3,7 @@
 const fs = require('fs');
 const argv = process.argv;
 try {
-  const data = fs.writeFileSync(argv[2], argv[3], 'utf8');
+  fs.writeFileSync(argv[2], argv[3], 'utf8');
 } catch (error) {
   console.error(error);
 }
